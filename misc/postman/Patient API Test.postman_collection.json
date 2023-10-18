@@ -1,0 +1,126 @@
+{
+	"info": {
+		"_postman_id": "af93c6c9-859b-441d-8130-bf0a43296ce2",
+		"name": "Patient API Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29751539"
+	},
+	"item": [
+		{
+			"name": "Create Patient",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Ojan\",\n    \"gender\": \"M\",\n    \"weight\": 45.0,\n    \"height\":170.0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{HOSTNAME}}/api/patient",
+					"protocol": "http",
+					"host": [
+						"{{HOSTNAME}}"
+					],
+					"path": [
+						"api",
+						"patient"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Read All Patients",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{HOSTNAME}}/api/patient",
+					"protocol": "http",
+					"host": [
+						"{{HOSTNAME}}"
+					],
+					"path": [
+						"api",
+						"patient"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Read Patient",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{HOSTNAME}}/api/patient/4",
+					"protocol": "http",
+					"host": [
+						"{{HOSTNAME}}"
+					],
+					"path": [
+						"api",
+						"patient",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Patient",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"John\",\n    \"gender\": \"M\",\n    \"weight\": 64.0,\n    \"height\":167.0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{HOSTNAME}}/api/patient/4",
+					"protocol": "http",
+					"host": [
+						"{{HOSTNAME}}"
+					],
+					"path": [
+						"api",
+						"patient",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Patient",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{HOSTNAME}}/api/patient/4",
+					"protocol": "http",
+					"host": [
+						"{{HOSTNAME}}"
+					],
+					"path": [
+						"api",
+						"patient",
+						"4"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
