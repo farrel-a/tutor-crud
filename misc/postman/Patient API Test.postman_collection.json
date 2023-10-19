@@ -121,6 +121,25 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Get All Room1 Status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{HOSTNAME}}/api/room1",
+					"protocol": "http",
+					"host": [
+						"{{HOSTNAME}}"
+					],
+					"path": [
+						"api",
+						"room1"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

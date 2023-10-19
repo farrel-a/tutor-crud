@@ -1,11 +1,12 @@
-// Patient CRUD REST API
-
+// Patient CRUD REST API + IoT using MQTT
 const express = require('express');
 const bodyParser = require('body-parser');
 const dbConnection = require('./config/database');
+const mqttClient = require('./config/mqtt');
+
+// --- REST API HTTP Server ---
 const app = express();
 const PORT = process.env.PORT || 5000;
-
 // parse JSON
 app.use(bodyParser.json());
 
@@ -116,5 +117,41 @@ app.delete('/api/patient/:id', (req, res) => {
     });
 });
 
+// Get all room1 status temperature
+app.get('/api/room1', (req, res) => {
+    const querySql = 'SELECT * FROM room1_status';
+    dbConnection.query(querySql, (err, rows, field) => {
+        if (err) {
+            res.status(500).json({success: false, message: 'Failed to get room1 data'});
+        }
+        res.status(200).json({success: true, data: rows});
+    })
+})
+
 
 app.listen(PORT, ()=> {console.log(`Server running at port: ${PORT}`)});
+
+
+// --- MQTT Protocol ---
+mqttClient.on('connect', () => {
+    console.log('MQTT broker connected');
+    mqttClient.subscribe('/room1/temperature');
+});
+
+mqttClient.on('message', (topic, message) => {
+    if (topic === '/room1/temperature') {
+        // if receives message from this topic, insert to db
+        const room1_timestamp = new Date().toISOString();
+        const temperature = parseFloat(message.toString());
+        const querySql = 'INSERT INTO room1_status SET ?';
+        const data = {room1_timestamp, temperature};
+        dbConnection.query(querySql, data, (err, rows, field) => {
+            if (err) {
+                console.log('Failed to insert data');
+            }
+            else {
+                console.log('Data inserted successfully');
+            }
+        });
+    }
+});

@@ -1,3 +1,7 @@
+CREATE DATABASE bangkitdb;
+
+USE bangkitdb;
+
 CREATE TABLE patient (
   id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   name varchar(100) NOT NULL,
@@ -17,3 +21,8 @@ INSERT INTO patient
 INSERT INTO patient 
     (name, gender, weight, height) 
     VALUES ('Neida Aleida', 'F', 50.2, 160.2);
+
+CREATE TABLE room1_status (
+    room1_timestamp varchar(100) NOT NULL,
+    temperature decimal(5,2) NOT NULL
+);
